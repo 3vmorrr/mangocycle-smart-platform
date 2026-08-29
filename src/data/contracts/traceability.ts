@@ -41,7 +41,7 @@ export interface PublicWasteTraceability {
   timeline: PublicStageEvent[];
   linkedProductBatchCodes: string[]; // Dynamically derived from shared product_waste_links
   linkedProductBatchCode: string | null; // Primary linked product for backwards compatibility
-  sustainability: PublicWasteSustainability;
+  sustainability?: PublicWasteSustainability;
   recordTimestamp: string; // Neutral database record/update timestamp
 }
 
@@ -85,6 +85,6 @@ export interface PublicProductTraceability {
   sourceWasteBatches: PublicProductWasteSource[];
   totalWasteUsedKg: number;
   processingJourneySummary: string[];
-  sustainability: PublicProductSustainability;
+  sustainability?: PublicProductSustainability;
   recordTimestamp: string; // Neutral database record/update timestamp
 }

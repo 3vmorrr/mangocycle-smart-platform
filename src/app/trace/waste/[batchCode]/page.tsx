@@ -168,7 +168,7 @@ export default function PublicWasteTraceabilityPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-2">
-            <PublicProcessingTimeline timeline={data.timeline} />
+            <PublicProcessingTimeline timeline={data.timeline || []} />
           </CardContent>
         </Card>
 
@@ -189,13 +189,15 @@ export default function PublicWasteTraceabilityPage() {
                 Waste Diverted from Disposal
               </span>
               <span className="font-mono font-bold text-sm text-primary">
-                {formatWeightKg(data.sustainability.wasteDivertedKg)}
+                {formatWeightKg(data.sustainability?.wasteDivertedKg ?? data.weightKg)}
               </span>
             </div>
 
-            <p className="text-text-secondary leading-relaxed">
-              {data.sustainability.summary}
-            </p>
+            {data.sustainability?.summary && (
+              <p className="text-text-secondary leading-relaxed">
+                {data.sustainability.summary}
+              </p>
+            )}
 
             {linkedProducts.length > 0 && (
               <div className="mt-3 pt-3 border-t border-border/60 flex flex-wrap items-center justify-between gap-2">

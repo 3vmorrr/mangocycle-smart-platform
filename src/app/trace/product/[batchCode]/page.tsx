@@ -200,7 +200,7 @@ export default function PublicProductTraceabilityPage() {
                 <CardTitle className="text-base">Contributing Waste Batches</CardTitle>
               </div>
               <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-md bg-surface-secondary border border-border">
-                {data.sourceWasteBatches.length} Input Batch{data.sourceWasteBatches.length === 1 ? "" : "es"}
+                {(data.sourceWasteBatches || []).length} Input Batch{(data.sourceWasteBatches || []).length === 1 ? "" : "es"}
               </span>
             </div>
             <CardDescription>
@@ -208,7 +208,7 @@ export default function PublicProductTraceabilityPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-2">
-            <PublicProductWasteCard sources={data.sourceWasteBatches} />
+            <PublicProductWasteCard sources={data.sourceWasteBatches || []} />
           </CardContent>
         </Card>
 
@@ -225,7 +225,7 @@ export default function PublicProductTraceabilityPage() {
           </CardHeader>
           <CardContent className="pt-2">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-              {data.processingJourneySummary.map((stage, idx) => (
+              {(data.processingJourneySummary || []).map((stage, idx) => (
                 <div
                   key={stage}
                   className="p-2.5 rounded-lg border border-border/80 bg-surface-secondary/30 flex items-center gap-2"
@@ -265,7 +265,7 @@ export default function PublicProductTraceabilityPage() {
                   Total Waste Diverted
                 </span>
                 <span className="font-mono font-bold text-base text-primary">
-                  {formatWeightKg(data.sustainability.totalWasteDivertedKg)}
+                  {formatWeightKg(data.sustainability?.totalWasteDivertedKg)}
                 </span>
               </div>
 
@@ -274,14 +274,18 @@ export default function PublicProductTraceabilityPage() {
                   Distinct Waste Sources
                 </span>
                 <span className="font-mono font-bold text-base text-text-primary">
-                  {data.sustainability.sourceCount} Supplier{data.sustainability.sourceCount === 1 ? "" : "s"}
+                  {data.sustainability?.sourceCount !== undefined && data.sustainability?.sourceCount !== null
+                    ? `${data.sustainability.sourceCount} Supplier${data.sustainability.sourceCount === 1 ? "" : "s"}`
+                    : "—"}
                 </span>
               </div>
             </div>
 
-            <p className="text-text-secondary leading-relaxed pt-1">
-              {data.sustainability.summary}
-            </p>
+            {data.sustainability?.summary && (
+              <p className="text-text-secondary leading-relaxed pt-1">
+                {data.sustainability.summary}
+              </p>
+            )}
           </CardContent>
         </Card>
 
