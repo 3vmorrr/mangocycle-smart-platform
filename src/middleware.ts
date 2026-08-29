@@ -2,8 +2,15 @@ import { createServerClient } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
 import { UserRole, hasMinimumRole } from "@/data/contracts/auth";
 
-const publicPrefixes = ["/trace/waste/", "/trace/product/", "/api/auth/", "/auth/callback"];
-const publicExact = new Set(["/", "/login", "/forgot-password", "/reset-password"]);
+const publicPrefixes = [
+  "/trace/waste/",
+  "/trace/product/",
+  "/api/trace/waste/",
+  "/api/trace/product/",
+  "/api/auth/",
+  "/auth/callback",
+];
+const publicExact = new Set(["/", "/login", "/forgot-password", "/reset-password", "/trace"]);
 const authPages = new Set(["/login", "/forgot-password"]);
 
 function requiredRole(pathname: string): UserRole {

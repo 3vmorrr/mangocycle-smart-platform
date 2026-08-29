@@ -25,7 +25,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/trace/waste/MW-2026-001">
+            <Link href="/trace">
               <Button variant="outline" size="sm" leftIcon={<QrCode className="w-3.5 h-3.5" />}>
                 Public QR Trace
               </Button>
