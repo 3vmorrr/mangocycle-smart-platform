@@ -1,0 +1,75 @@
+{
+  "scenario1_aggregate": {
+    "passed": true,
+    "question": "How much total waste has been collected across all batches in the platform?",
+    "model": "gemini-3.6-flash",
+    "toolSelected": "get_total_waste",
+    "validatedArgs": {
+      "period": "all"
+    },
+    "toolResultSummary": "total_waste_kg=50",
+    "finalAnswer": "A total of **50 kg** of mango waste has been collected across all batches in the platform (1 total batch).",
+    "numericAgreement": true
+  },
+  "scenario2_detail": {
+    "passed": true,
+    "question": "Show me the recorded details for waste batch MW-2026-LIVE8.",
+    "model": "gemini-3.6-flash",
+    "toolSelected": "get_batch_details",
+    "validatedArgs": {
+      "batch_code": "MW-2026-LIVE8"
+    },
+    "toolResultSummary": "batch_code=MW-2026-LIVE8, weight_kg=50",
+    "finalAnswer": "Here are the recorded details for waste batch **MW-2026-LIVE8**:\n\n* **Batch Code:** MW-2026-LIVE8\n* **Waste Type:** Mango Peel (`mango_peel`)\n* **Weight:** 50 kg\n* **Current Status:** Collected\n* **Collection Date:** August 28, 2026\n* **Source Name:** University Agriculture Lab\n* **Source Location:** Campus Agricultural Research Facility, Sector 4\n* **Visual Condition:** Not recorded\n* **Moisture Status:** Not recorded",
+    "dataAgreement": true,
+    "leakedPrivateFields": false
+  },
+  "scenario3_pending": {
+    "passed": true,
+    "question": "What is the current Biological Yield?",
+    "model": "gemini-3.6-flash",
+    "toolCallsCount": 0,
+    "finalAnswer": "This metric is currently marked Formula Pending per platform governance.",
+    "inventedNumericValue": false
+  },
+  "scenario4_sustainability": {
+    "passed": true,
+    "model": "gemini-3.6-flash",
+    "deterministicPayload": {
+      "totalWasteCollectedKg": 50,
+      "totalWasteProcessedKg": null,
+      "totalBatches": 1,
+      "completedBatches": 0,
+      "activeBatches": 1,
+      "productBatchesCount": 0,
+      "wasteBySource": [
+        {
+          "sourceName": "University Agriculture Lab",
+          "weightKg": 50
+        }
+      ],
+      "wasteByType": [
+        {
+          "wasteType": "mango_peel",
+          "label": "Mango Peel",
+          "weightKg": 50
+        }
+      ],
+      "topSource": {
+        "name": "University Agriculture Lab",
+        "weightKg": 50
+      }
+    },
+    "narrativeBullets": [
+      "A total of 50 kg of waste has been collected through the platform.",
+      "Operational workflow shows 1 active batch currently in progress, with 0 completed batches and 0 product batches.",
+      "University Agriculture Lab represents the top source, supplying 50 kg of collected waste.",
+      "The waste stream collected consists entirely of 50 kg of Mango Peel."
+    ],
+    "aiSummary": "During the reported period, the MangoCycle Smart Platform logged 50 kg of Mango Peel waste, entirely contributed by the University Agriculture Lab. Operational metrics reflect 1 active batch currently undergoing processing, establishing the initial throughput baseline for platform valorization.",
+    "unsupportedClaims": false,
+    "pendingMetricsInvented": false,
+    "persistedRecordId": "dd36813f-5192-41c2-834c-c58f27a5b8c9",
+    "requestedBy": "2d086817-be8a-4baf-bc0e-befac1eebbf8"
+  }
+}

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary palette (Muted teal-green) */
+    --color-primary: 152 57% 35%;
+    --color-primary-light: 152 45% 92%;
+    --color-primary-dark: 152 57% 25%;
+    
+    /* Secondary & Accent (Slate blue & Warm mango amber) */
+    --color-secondary: 210 40% 45%;
+    --color-accent: 38 80% 55%;
+
+    /* Neutral palette (Light Mode) */
+    --color-bg: 0 0% 98%;
+    --color-surface: 0 0% 100%;
+    --color-surface-elevated: 0 0% 100%;
+    --color-border: 220 13% 91%;
+    --color-text-primary: 220 20% 15%;
+    --color-text-secondary: 220 10% 45%;
+
+    /* Semantic colors */
+    --color-success: 152 57% 35%;
+    --color-warning: 38 80% 55%;
+    --color-error: 0 65% 50%;
+    --color-info: 210 60% 50%;
+  }
+
+  .dark {
+    /* Neutral palette (Dark Mode) */
+    --color-bg: 220 20% 10%;
+    --color-surface: 220 18% 14%;
+    --color-surface-elevated: 220 16% 18%;
+    --color-border: 220 13% 23%;
+    --color-text-primary: 220 13% 91%;
+    --color-text-secondary: 220 10% 60%;
+  }
+
+  * {
+    border-color: hsl(var(--color-border));
+  }
+
+  body {
+    background-color: hsl(var(--color-bg));
+    color: hsl(var(--color-text-primary));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Logical and Accessibility Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-surface transition-shadow;
+  }
+}
