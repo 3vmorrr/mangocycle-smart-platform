@@ -65,9 +65,10 @@ export function mapStageHistory(
   row: DbStageHistoryRow,
   stageOrderMap?: Record<string, number>
 ): BatchStageHistory {
-  const stageOrder = stageOrderMap
-    ? stageOrderMap[row.stage_name.toLowerCase()] ?? 0
-    : 0;
+  const stageOrder =
+    stageOrderMap && row.stage_name
+      ? stageOrderMap[row.stage_name.toLowerCase()] ?? 0
+      : 0;
 
   return {
     id: row.id,

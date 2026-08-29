@@ -21,7 +21,7 @@ export type StatusVariant =
   | "not_applicable";
 
 interface StatusBadgeProps {
-  status: string;
+  status?: string | null;
   variant?: StatusVariant;
   className?: string;
   size?: "sm" | "md";
@@ -175,9 +175,10 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
   size = "sm",
   showDot = true,
 }) => {
-  const key = (variant || status).toLowerCase().replace(/\s+/g, "_");
+  const rawStatus = variant || status || "unknown";
+  const key = String(rawStatus).toLowerCase().replace(/\s+/g, "_");
   const config = STATUS_CONFIG[key] || {
-    label: status,
+    label: status ? String(status) : "Unknown",
     bg: "bg-gray-50 dark:bg-gray-900/40",
     text: "text-gray-700 dark:text-gray-300",
     dot: "bg-gray-400",

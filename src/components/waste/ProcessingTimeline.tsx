@@ -15,7 +15,7 @@ export const ProcessingTimeline: React.FC<ProcessingTimelineProps> = ({
   history = [],
 }) => {
   const isRejected = currentStatus === "rejected";
-  const rejectedEvent = history.find((h) => h.stageName.toLowerCase() === "rejected");
+  const rejectedEvent = history.find((h) => h.stageName?.toLowerCase() === "rejected");
 
   const currentStageIndex = CANONICAL_PROCESSING_STAGES.findIndex(
     (s) => s.id === currentStatus
@@ -46,7 +46,7 @@ export const ProcessingTimeline: React.FC<ProcessingTimelineProps> = ({
         {CANONICAL_PROCESSING_STAGES.map((stage, idx) => {
           // Find matching event in history
           const event = history.find(
-            (h) => h.stageName.toLowerCase() === stage.name.toLowerCase()
+            (h) => h.stageName?.toLowerCase() === stage.name.toLowerCase()
           );
 
           const isCompleted =
